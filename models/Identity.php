@@ -2,34 +2,16 @@
 
 namespace app\models;
 
+use app\components\db\Record;
 use app\traits\IdentityTrait;
-use yii\base\BaseObject;
 use yii\web\IdentityInterface;
 
-class Identity extends BaseObject implements IdentityInterface
+class Identity extends Record implements IdentityInterface
 {
     use IdentityTrait;
 
-    public int $id;
-    public string $username;
-    public string $password;
-    public string $authKey;
-    public string $accessToken;
-
-    private static array $users = [
-        '100' => [
-            'id' => '100',
-            'username' => 'admin',
-            'password' => 'admin',
-            'authKey' => 'test100key',
-            'accessToken' => '100-token',
-        ],
-        '101' => [
-            'id' => '101',
-            'username' => 'demo',
-            'password' => 'demo',
-            'authKey' => 'test101key',
-            'accessToken' => '101-token',
-        ],
-    ];
+    public static function tableName(): string
+    {
+        return Tables::Identity->value;
+    }
 }
